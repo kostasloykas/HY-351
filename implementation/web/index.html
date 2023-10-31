@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="description" content="Home Page">
+        <meta name="keywords" content="home, page, hy351">
+        <meta name="author" content="Eva Chrysostomaki">
+        <meta name="viewpoint" content="width=device-width, initial-scale=1.0">
+
+        <script src="https://www.gstatic.com/charts/loader.js"></script>
+        <script src="js/javascript.js" defer></script>
+        <link rel="stylesheet" href="css/css.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://www.gstatic.com/charts/loader.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
+
+        <title>Covid-19 Vaccination</title>
+        <link rel="shortcut icon" type="image/jpg" href="media/favicon.jpg"/>
+    </head>
+
+    <body onload="visualize_differences();">
+        <!-- Background image -->
+        <div class="bg_img" style="background-image:url('media/background2.jpg')"></div>
+
+        <!-- Avatar and name -->
+        <div class="avatar">
+            <h1>Covid-19 Vaccination<br></h1>
+            <h5>Schedule appointments <br> Confirm your vaccination</h5> 
+        </div> 
+
+        <!-- Menu -->
+        <nav>
+            <div class="menu">
+                <ul>
+                    <li class="active"><a href="#home/">Home</a></li>
+                    <li><a href="register.html">Register</a></li>
+                    <li><a href="login.html">Login</a></li>
+                </ul>
+            </div>
+        </nav>
+
+        <div class="welcome" style="background-image: url('media/welcome.jpg')">
+            <article class = "about">
+                <h2>Welcome</h2>
+                <p>The National Vaccination Campaign for covid-19 has started. It is approved for its safety, 
+                    quality and effectiveness by the competent international and national organizations, 
+                    the World Health Organization, the EMA (European Medicines Agency) and the FDA (US Food and Drug Administration).
+
+                    Vaccination, free for all, starts for people being in the front line of health, for vulnerable groups, those in 
+                    closed structures / care structures and for those who serve in important state services.
+
+                    The National Vaccination Committee may change the priority depending on the number of doses available. 
+                    The vaccine is optional, but necessary to protect ourselves and our fellow human beings. And we do not forget: 
+                    We continue wearing a mask and keeping our distance for as long as necessary.</p>
+
+                <h2>Statistics</h2>
+                <p id="visualize_dif"></p>
+                <canvas id="myChart" style="width:100%;max-width:500px; display: none;"></canvas>
+                
+                <br>
+                <br>
+                
+                <a href="https://www.vrisko.gr/efimeries-farmakeion/irakleio" target="_blank">
+                    <img src="https://www.vrisko.gr/graphlink/Pharmacies/image/160x60_Banner_n/?Region=irakleio&SmallRegion=true&NativeRegion=%ce%97%cf%81%ce%ac%ce%ba%ce%bb%ce%b5%ce%b9%ce%bf&" 
+                         border="0" alt="Εφημερεύοντα Φαρμακεία Ηράκλειο " /></a> 
+                
+                <a href="https://www.vrisko.gr/efimeries-nosokomeion?SelectedCity=hrakleio" target="_blank">
+                    <img src="https://www.vrisko.gr/graphlink/Hospitals/image/160x60_Banner_n/?Prefecture=hrakleio&SmallPrefecture=true&NativePrefecture=%ce%97%ce%a1%ce%91%ce%9a%ce%9b%ce%95%ce%99%ce%9f&" 
+                         border="0" alt="Εφημερεύοντα Νοσοκομεία ΗΡΑΚΛΕΙΟ" /></a>     
+            </article>
+
+
+        </div>
+
+
+    </body>
+
+</html>

@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="description" content="Login Page">
+        <meta name="keywords" content="login, page, hy351">
+        <meta name="author" content="Eva Chrysostomaki">
+        <meta name="viewpoint" content="width=device-width, initial-scale=1.0">
+
+        <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+        <script src="js/nurse.js" defer></script>
+        <link rel="stylesheet" href="css/css.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+        <title>Covid-19 Vaccination</title>
+        <link rel="shortcut icon" type="image/jpg" href="media/favicon.jpg"/>
+    </head>
+
+    <body>
+        
+        <!-- Background image -->
+        <div class="bg_img" style="background-image:url('media/background2.jpg')"></div>
+
+        <!-- Avatar and name -->
+        <div class="avatar">
+            <h1>Covid-19 Vaccination<br></h1>
+            <h5>Schedule appointments <br> Confirm your vaccination</h5>
+        </div>  
+
+        <!-- Menu -->
+        <nav>
+            <div class="menu">
+                <ul>
+                    <li class="active"><a href="#account/">Account</a></li>
+                </ul>
+            </div>
+        </nav>
+
+        <form id="Form">
+
+            <div class="row">
+                <h3>Your data</h3>
+                <p id="data_alert"></p>
+            </div>
+
+            <div class="row">
+                <div class="type">
+                    <h3>Update your data</h3> <br> Choose what you want to change
+                </div>
+                <div class="answer">
+                    <select id="choice" onchange="select_change()" name="choice">
+                        <option value="password">password</option>
+                        <option value="birthdate">birthdate</option>
+                        <option value="gender">gender</option>     
+                        <option value="telephone">telephone</option>
+                    </select>
+                </div>
+            </div> 
+
+            <div class="row">
+                <div class="type">
+                    <label for="choice" id="username_label">Input the new information</label>
+                </div>
+                <div class="answer">
+                    <input type="text" id="change" name="change" placeholder="Change..." required>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="type">
+                    <input type="button" onclick="update_data_nurse()" id="update"  value="Update">
+                </div> 
+                <p id="update_alert" ></p>  
+            </div>   
+
+            
+        </form>
+     
+        
+        <form>
+            <div class="row">
+                <div class="type">
+                    <input type="button" onclick="location.href = 'login.html'; logout_func()" id="logout"  value="Logout">
+                </div>    
+            </div>
+        </form>
+
+    </body>
+
+
+</html>

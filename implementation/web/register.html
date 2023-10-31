@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="description" content="Register Page">
+        <meta name="keywords" content="register, page, hy351">
+        <meta name="author" content="Eva Chrysostomaki">
+        <meta name="viewpoint" content="width=device-width, initial-scale=1.0">
+
+        <script src="https://www.gstatic.com/charts/loader.js"></script>
+        <script src="js/register.js" defer></script>
+        <link rel="stylesheet" href="css/css.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+        <title>Covid-19 Vaccination</title>
+        <link rel="shortcut icon" type="image/jpg" href="media/favicon.jpg"/>
+    </head>
+
+    <body onload="doctor();">
+        <!-- Background image -->
+        <div class="bg_img" style="background-image:url('media/background2.jpg')"></div>
+
+        <!-- Avatar and name -->
+        <div class="avatar">
+            <h1>Covid-19 Vaccination<br></h1>
+            <h5>Schedule appointments <br> Confirm your vaccination</h5> 
+        </div> 
+
+        <!-- Menu -->
+        <nav>
+            <div class="menu">
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li class="active"><a href="#register/">Register</a></li>
+                    <li><a href="login.html">Login</a></li>
+                </ul>
+            </div>
+        </nav>
+
+        <form id="Form" onsubmit='check_exist();return false;'>
+            <h3>Please fill out this form</h3>
+            <h5>Fields with * are mandatory</h5>
+
+            <h5>Already have an account?</h5>
+
+            <button type="button" onclick="location.href = 'login.html';">Login</button>
+
+            <div class="row">
+                <div class="type">
+                    Type * 
+                </div>
+                <div>
+                    <input type="radio" onclick="doctor()" id="user" name="check" value="user" checked>
+                    <label for="user">User</label>
+                    <input type="radio" onclick="doctor()" id="doc" name="check" value="doc">
+                    <label for="doc">Doctor</label>
+                </div>
+            </div>
+
+            <div class="doctor">
+                <div class="row">
+                    <div class="type">
+                        <label for="hospital_id" id="hospital_id_label">Hospital Id*</label>
+                    </div>
+                    <div class="answer">
+                        <input type="number" id="hospital_id" name="hospital_id" min="1" max="999" step="1" placeholder="Hospital Id...">
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="type">
+                    <label for="username">Username *</label>
+                </div>
+                <div class="answer">
+                    <input type="text" id="username" name="username" placeholder="Your username..." required minlength="8" pattern="\S+" onkeyup="usernameCheck()">
+                    <p id="username_check"></p>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="type">
+                    <label for="email">Email *</label>
+                </div>
+                <div class="answer">
+                    <input type="email" id="email" name="email" pattern="[^@\s]+@[^@\s]+\.[^@\s]+" placeholder="Your email..." required>
+                </div>
+            </div>  
+
+            <div class="row">
+                <div class="type">
+                    <label for="pass">Password *</label>
+                </div>
+                <div class="answer">
+                    <input type="password" onkeyup="passwordStrength()" id="password" name="password" placeholder="Your password..."  
+                           pattern="^(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,15}.\S+"  minlength="8" maxlength="15" required>
+                    <input type="image" src="media/show.jpg" onclick="show_pass()">
+                    <p id="pass_check"></p>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="type">
+                    <label for="pass">Confirm Password *</label>
+                </div>
+                <div class="answer">
+                    <input type="password" onkeyup="checkPassword()" id="conf" name="confirmation" placeholder="Confirm password..."  
+                           pattern="^(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,15}"  minlength="8" maxlength="15" required>
+                    <input type="image" src="media/show.jpg" onclick="show_conf()">
+                    <p id="alert"></p>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="type">
+                    <label for="firstname">First name *</label>
+                </div>
+                <div class="answer">
+                    <input type="text" pattern="\S+" id="firstname" name="firstname" placeholder="Your first name..." minlength="3" maxlength="30" required  onkeyup="this.value = this.value.toUpperCase();"
+                           onkeypress="return (event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) || (event.charCode >= 48 && event.charCode <= 57)"> 
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="type">
+                    <label for="lastname">Last name *</label>
+                </div>
+                <div class="answer">
+                    <input type="text" pattern="\S+." id="lastname" name="lastname" placeholder="Your last name..." minlength="3" maxlength="30" required  onkeyup="this.value = this.value.toUpperCase();"
+                           onkeypress="return (event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) || (event.charCode >= 48 && event.charCode <= 57)">
+                </div>               
+            </div>
+
+            <div class="row">
+                <div class="type">
+                    <label for="birthdate">Birthday *</label>
+                </div>
+                <div class="answer">
+                    <input type="date" id="birthdate" name="birthdate" value="1990-01-01" min="1940-01-01" max="2005-12-31">
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="type">
+                    Gender *
+                </div>
+                <div class="answer">
+                    <input type="radio" id="male" name="gender" value="Male">
+                    <label for="male">Male</label>
+                    <input type="radio" id="female" name="gender" value="Female">
+                    <label for="female">Female</label>
+                    <input type="radio" id="other" name="gender" value="Other">
+                    <label for="other">Other</label>
+                </div>
+            </div>
+
+            <div class="user">
+                <div class="row">
+                    <div class="type">
+                        <label for="amka" id="label_amka">SSN (Social Security Number) *</label>
+                    </div>
+                    <div class="answer">
+                        <input type="number"  id="amka" name="amka" onkeyup="ssn()" placeholder="Your SSN..." min="1" max="99999999999" step="1">
+                    </div>
+                    <p id="alert2"></p>
+                </div>
+
+
+
+                <div class="row">
+                    <div class="type">
+                        <label for="city" id="label_city">City *</label>
+                    </div>
+                    <div class="answer">
+                        <input type="text" id="city" name="city" placeholder="Your city..." minlength="3" maxlength="10"
+                               onkeypress="return (event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) || (event.charCode >= 48 && event.charCode <= 57) || (event.charCode === 32)">
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="type">
+                        <label for="address" id="label_address">Address *</label>
+                    </div>
+                    <div class="answer">
+                        <input type="text" id="address" name="address" placeholder="Your address..." minlength="5" maxlength="15"
+                               onkeypress="return (event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) || (event.charCode >= 48 && event.charCode <= 57) || (event.charCode === 32)">
+                    </div>
+                </div>
+
+
+                <div class="row">
+                    <div class="type">
+                        <label for="addr_no" id="label_addr_no">Address Number *</label>
+                    </div>
+                    <div class="answer">
+                        <input type="number" id="addr_no" name="addr_no" placeholder="Your addess number..." step="any" min ="0" max="1000">
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="type">
+                    <label for="telephone">Telephone number *</label>
+                </div>
+                <div class="answer">
+                    <input type="number" id="telephone" name="telephone" placeholder="Your telephone number..." min="1" max="99999999999999" step="1" required>
+                </div>
+            </div>
+
+            <div class="doctor">
+                <div class="row">
+                    <div class="type">
+                        <input type="radio" id="inter" name="specialty" value="Pathologist">
+                        <label for="inter" id="label_inter">Pathologist</label>
+
+                        <input type="radio" id="gp" name="specialty" value="GeneralDoctor">
+                        <label for="gp" id="label_gp">General Doctor</label> 
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="type">
+                        <label for="doc_info" >Doctor's Information</label>
+                    </div>
+                    <div class="answer">
+                        <input type="text" id="doctor_info" name="doctor_info" placeholder="Doctor's Information...">
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="type">
+                    <label for="checkbox">Accept Terms and Conditions *</label>
+                </div>
+                <div class="answer">
+                    <input type="checkbox" id="checkbox" name="checkbox" required>
+                </div>
+                <p id="ajaxContent"></p>
+            </div>
+
+            <div class="row">
+                <div class="type">
+                    <input type="submit" id="submit" value="Register">
+                </div>    
+            </div>
+
+
+
+        </form>
+
+    </body>
+
+</html>

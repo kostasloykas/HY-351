@@ -1,0 +1,348 @@
+html{
+	min-height: 100%;
+}
+
+body, html {
+  height: 100%;
+  margin: 0;
+}
+
+body{
+  background-color: white;
+  font-family: Georgia;
+  padding-bottom: 60px;
+}
+
+footer {
+  margin: 0 auto;
+  text-align: center;
+  width: 10%;
+} 
+
+table, td {
+  border-collapse: collapse;
+  margin: 25px 0;
+  min-width: 50px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+  padding: 10px 10px;
+  
+}
+
+th {
+    background-color: blue;
+    color: #ffffff;
+    text-align: left;
+    padding: 10px 10px;
+}
+
+
+/* Background image */
+.bg_img {
+  opacity: 0.8;
+  height: 75%;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
+}
+
+/* Avatar div */
+.avatar {
+  width: 450px;
+  height: auto;
+  background: rgba(0, 0, 0, 0.7);
+  padding: 40px;
+  text-align: center;
+  margin: auto;
+  top: 37%;
+  left: 50%;
+  transform: translate(-47%, -50%);
+  color: white;
+  font-family: 'Century Gothic',sans-serif;
+  position: absolute;
+
+}
+
+
+
+/* Caption 1 (name) */
+.avatar h1{
+ font-size: 40px;
+ letter-spacing: 4px;
+ font-weight: 100;
+}
+
+/* Caption 2 (student) */
+.avatar h5{
+  font-size: 20px;
+  letter-spacing: 3px;
+  font-weight: 100;
+}
+
+
+/* Menu style */
+nav{
+  margin:0;
+  padding:0;
+  text-align:center;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  padding: 10px;
+  justify-content: space-between;
+  align-items: center;
+  background-color: black;
+}
+
+.menu{
+  flex: 1;
+  text-align: center;
+}
+
+.menu ul li {
+  display: inline-block;
+  padding: 8px 25px;
+  position: relative;
+}
+
+.menu ul li a {
+
+  color: white;
+  text-decoration: none;
+  font-size: 20px;
+}
+
+/* Blue underline for menu */
+.menu ul li::after{
+  content: '';
+  width: 0%;
+  height: 2px;
+  background: blue;
+  display: block;
+  margin: auto;
+}
+
+/* Mouse over menu action */
+.menu ul li:hover::after{
+  width: 100%;
+}
+
+/* Active page has a red underline */
+.menu ul li.active:after {
+  content: '';
+  width: 100%;
+}
+
+/* Register form */
+input[type=text],[type=email],[type=password],[type=date],[type=number],[type=textarea] ,select{
+  width: 70%;
+  padding: 12px;
+  border: 1px solid;
+  border-radius: 4px;
+  resize: vertical;
+}
+
+
+label {
+  padding: 12px 12px 12px 0;
+  display: inline-block;
+}
+
+input[type=submit],[type=button] {
+  background-color: black;
+  color: white;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-bottom: 30px;
+}
+
+input[type=submit]:hover,[type=button]:hover {
+  background-color: blue;
+}
+
+button:disabled,
+button[disabled]{
+  background-color: grey;
+}
+
+form {
+  border-radius: 5px;
+  margin-left: 30%;
+}
+
+.type {
+  font-weight: bold;
+  margin-top: 6px;
+}
+
+.row {
+    margin-top: 6px;
+}
+
+.answer {
+  width: 75%;
+  margin-top: 6px;
+}
+
+/* Green background when input is correct */
+input:required:focus:valid {
+  background-color: lightgreen;
+}
+
+/* Red background when input is false */
+input:focus:invalid {
+  background-color: lightsalmon;
+}
+
+/* Home page */
+.welcome{
+  background-repeat: no-repeat;
+  background-position: left;
+  background-size: 65%;
+  padding: 100px 0;
+  margin-left: 0%;
+  margin-top: 0%;
+  overflow: hidden;
+}
+
+.about {
+  width: 50%;
+  background-color: white;
+  padding: 10px;
+  margin-right: 15%;
+  font-size: 15px;
+  text-align: justify;
+  float: right;
+}
+
+.about h2{
+  margin-bottom: 30px;
+  font-size: 35px;
+}
+
+
+@media screen and (max-width:767px)
+{
+   .menu a {
+    float: none;
+    display: block;
+    position: relative;
+    top: 0;
+    left: 0;
+    transform: none;
+  }
+
+  .avatar{
+    width: 300px;
+  }
+
+  .avatar h1 {
+    font-size: 20px;
+    letter-spacing: 4px;
+    font-weight: 100;
+  }
+
+  .avatar h2 {
+    font-size: 10px;
+    letter-spacing: 3px;
+    font-weight: 100;
+  }
+
+  .form {
+    margin-left: 5%;
+    margin-right: 5%;
+   }
+  
+}
+
+
+
+
+
+
+#doctors-table{
+    margin-top: 50px !important;
+}
+
+
+#doctors-table table , #appointment-table table{
+    margin-left: auto;
+    margin-right: auto;
+    font-size: 20px;
+}
+#doctors-table table td button , #appointment-table table td button{
+    text-align: center;
+    margin-bottom: auto;
+    margin-top: auto;
+}
+
+
+#user-data div {
+    margin-right: 50% ;
+}
+
+#user-data div input ,#user-data div select{
+    float: right;
+}
+
+
+#new-user-form,#new-hospital-form {
+    margin-top:50px!important;
+    margin-left: auto;
+    margin-right: auto;
+    width: 25%;
+}
+#new-user-form div , #new-hospital-form div {
+    text-align: center;
+}
+
+#new-user-form div input{
+    width: 300px;
+}
+#new-hospital-form div input {
+    width: 300px;
+    float: right;
+}
+
+
+/*--------------------Messages--------------------------*/
+#messages-div{
+    margin-bottom: 100px!important;
+}
+
+.container-message {
+    border: 2px solid #dedede;
+    background-color: #f1f1f1;
+    border-radius: 5px;
+    padding: 20px;
+    width: 40%;
+    margin: 20px 0;
+    margin-left: auto;
+    margin-right: auto;
+    font-size: 20px;
+}
+
+.container-message img {
+    float: left;
+    width: 50px;
+    height: 50px;
+    outline: none;
+    border: 0px !important;
+    text-decoration: none;
+    background-size: cover!important;
+    margin-right: 50px;
+}
+
+
+.container img.right {
+    float: right;
+    margin-left: 20px;
+    margin-right:0;
+}
+
+
+
+
+

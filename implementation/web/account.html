@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="description" content="Account Page">
+        <meta name="keywords" content="account, page, hy351">
+        <meta name="author" content="Eva Chrysostomaki">
+        <meta name="viewpoint" content="width=device-width, initial-scale=1.0">
+
+
+        <link rel="stylesheet" href="css/css.css">
+        <script src="js/account.js" defer></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.5.3/jspdf.debug.js" integrity="sha384-NaWTHo/8YCBYJ59830LTz/P4aQZK1sS0SneOgAvhsIl3zBu8r9RevNg5lHCHAuQ/" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.2.13/jspdf.plugin.autotable.min.js"></script>
+
+        <title>Covid-19 Vaccination</title>
+        <link rel="shortcut icon" type="image/jpg" href="media/favicon.jpg"/>
+    </head>
+
+    <body>
+
+        <!-- Background image -->
+        <div class="bg_img" style="background-image:url('media/background2.jpg')"></div>
+
+        <!-- Avatar and name -->
+        <div class="avatar">
+            <h1>Covid-19 Vaccination<br></h1>
+            <h5>Schedule appointments <br> Confirm your vaccination</h5>
+        </div>  
+
+        <!-- Menu -->
+        <nav>
+            <div class="menu">
+                <ul>
+                    <li class="active"><a href="#" onclick="account_tab();" >Account</a></li>
+                    <li><a href="#" onclick="schedule_tab();">Schedule Appointment</a></li>
+                    <li><a href="#" onclick="cancel_tab();">Cancel Appointment</a></li>
+                    <li><a href="#" onclick="vaccination_tab();">Vaccination Confirmation</a></li>
+                    <li><a href="#" onclick="message_tab();">Send Message</a></li>
+                </ul>
+            </div>
+        </nav>
+
+        <form id="Form">
+
+            <div class="row">
+                <h3>Your data</h3>
+                <p id="data_alert"></p>
+            </div>
+            
+             <div class="row">
+                    <div class="type">
+                        <h3>Update your data</h3> <br> Choose what you want to change
+                    </div>
+                    <div class="answer">
+                        <select id="choice" onchange="select_change()" name="choice">
+                            <option value="password">password</option>
+                            <option value="birthdate">birthdate</option>
+                            <option value="gender">gender</option>     
+                            <option value="city">city</option>
+                            <option value="address">address</option>
+                            <option value="addr_no">address number</option>
+                            <option value="telephone">telephone</option>
+                        </select>
+                    </div>
+                </div> 
+
+            <div class="row">
+                <div class="type">
+                    <label for="choice" id="username_label">Input the new information</label>
+                </div>
+                <div class="answer">
+                    <input type="text" id="change" name="change" placeholder="Change..." required>
+                </div>
+                <p id="pass_check"></p>
+            </div>
+
+            <div class="row">
+                <div class="type">
+                    <input type="button" onclick="update_data()" id="update"  value="Update">
+                </div> 
+                <p id="update_alert" ></p>  
+            </div>
+            
+            <div class="row">
+                <div class="type">
+                    <input type="button" onclick="location.href = 'login.html'; logout_func()" id="logout"  value="Logout">
+                </div>    
+            </div>
+
+        </form>
+
+        <form id="Form_show_app"> 
+
+            <h3>Schedule appointment</h3>
+
+            <div class="row">
+                <div class="type">
+                    <input type="button" onclick="hospitalsGET()" id="hospitals"  value="Show hospitals in your city">
+                </div>    
+                <p id="hos_alert" style="display:none;"></p>  
+            </div>
+
+            <div class="row">
+                <div class="type">
+                    <label for="hospital_id">Hospital Id</label>
+                </div>
+                <div class="answer">
+                    <input type="number"  id="hospital_id" name="hospital_id" placeholder="Hospital id..." required>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="type">
+                    <label for="label_date">Date</label>
+                </div>
+                <div class="answer">
+                    <input type="date" id="date_picker" name="date" max="2022-12-12">
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="type">
+                    <input type="button" onclick="show_appointments()" id="app_btn"  value="Show appointments">
+                </div>    
+                <p id="app_alert"></p> 
+            </div>
+        </form>
+
+
+        <form id="Form_randevouz"> 
+
+            <div class="row">
+                <div class="type">
+                    <label for="randevouz_id">Appointment Id</label>
+                </div>
+                <div class="answer">
+                    <input type="number"  id="randevouz_id" name="randevouz_id" placeholder="Appointment id..." required>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="type">
+                    <input type="button" onclick="post_appointment()" id="randevouz_btn2"  value="Schedule">
+                </div>    
+                <p id="randevouz_alert2"></p> 
+            </div>
+        </form>
+
+        <form id="Form_cancel">
+
+            <h3>Cancel Appointment</h3>
+
+            <div class="row">
+                <div class="type">
+                    <input type="button" onclick="show_upcoming_appointments()"  value="Show scheduled appointments">
+                </div>    
+                <p id="randevouz_alert3"></p> 
+            </div>
+
+            <div class="row">
+                <div class="type">
+                    <label for="randevouz_id">Appointment Id</label>
+                </div>
+                <div class="answer">
+                    <input type="number"  id="randevouz_id2" name="randevouz_id2" placeholder="Appointment id..." required>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="type">
+                    <input type="button" onclick="cancel_appointment()" id="randevouz_btn3"  value="Cancel appointment">
+                </div>    
+                <p id="randevouz_alert4"></p> 
+            </div>
+        </form>
+
+        <form id="Form_message">
+            <h3>Send message to an admin</h3>
+
+            <div class="row">
+                <div class="type">
+                    <label for="message">Message</label>
+                </div>
+                <div class="answer">
+                    <input type="text"  id="message" name="message" placeholder="Your message..." maxlength="1000">
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="type">
+                    <input type="button" onclick="send_message()" id="message_btn"  value="Send">
+                </div>    
+                <p id="message_alert"></p> 
+            </div>
+        </form>
+        <form id="Form_vaccination">
+            <h3>Vaccination Confirmation</h3>
+            <div class="row">
+                <div class="type">
+                    <input type="button" onclick="vaccination_conf()" id="vac_conf"  value="PDF Creation">
+                    <input type="button" onclick="vaccination_conf_eur()" id="vac_conf_eur"  value="European PDF Creation">
+                </div>  
+                <p id="pdf_alert"></p> 
+            </div>  
+
+
+        </form>
+
+    </body>
+
+
+</html>

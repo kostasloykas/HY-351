@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="description" content="Login Page">
+        <meta name="keywords" content="login, page, hy351">
+        <meta name="author" content="Eva Chrysostomaki">
+        <meta name="viewpoint" content="width=device-width, initial-scale=1.0">
+
+        <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+        <script src="js/admin.js" defer></script>
+        <link rel="stylesheet" href="css/css.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+        <title>Covid-19 Vaccination</title>
+        <link rel="shortcut icon" type="image/jpg" href="media/favicon.jpg"/>
+    </head>
+
+    <body>
+
+        <!-- Background image -->
+        <div class="bg_img" style="background-image:url('media/background2.jpg')"></div>
+
+        <!-- Avatar and name -->
+        <div class="avatar">
+            <h1>Covid-19 Vaccination<br></h1>
+            <h5>Schedule appointments <br> Confirm your vaccination</h5>
+        </div>  
+
+        <!-- Menu -->
+        <nav>
+            <div class="menu">
+                <ul>
+                    <li class="active"><a href="#" onclick="Account();" >Account</a></li>
+                    <li><a href="#" onclick="CertifyDoctors();">Certify Doctors</a></li>
+                    <li><a href="#" onclick="UsersData();">Users Data</a></li>
+                    <li><a href="#" onclick="ShowNewUserTab();">Add New User</a></li>
+                    <li><a href="#" onclick="ShowNewHospitalTab();">Add New Hospital</a></li>
+                    <li><a href="#" onclick="ShowMessagesTab();">Messages</a></li>
+                </ul>
+            </div>
+        </nav>
+
+        <form id="Form">
+
+            <div class="row">
+                <h3>Your data</h3>
+                <p id="data_alert"></p>
+            </div>
+
+            <div class="row">
+                <div class="type">
+                    <input type="button" onclick="location.href = 'login.html'; logout_func()" id="logout"  value="Logout">
+                </div>    
+            </div>
+
+        </form>
+
+
+        <div id="doctors-table" >
+        </div>
+
+
+        <div id = "users-data-div" style="text-align: center; margin-top: 2em;">
+            <input id="amka" type="text" name="amka" style="width: 30%; font-size: 1em;" pattern="[0-9]{11}" title="11 numbers" placeholder="AMKA" onchange="$('#user-data').trigger('reset');">
+            <input type="submit" value="Search" onclick="SearchUser($('#amka').val());">
+
+            <form id="user-data" onsubmit="UpdateUser($('#amka').val()); return false;" >
+
+
+                <div >
+                    <label for="username" style="text-align: center!important;">Username </label>
+                    <input type="text" id="username" name="username"  required minlength="8" pattern="\S+" onkeyup="usernameCheck()">
+                </div>
+
+                <div>
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" pattern="[^@\s]+@[^@\s]+\.[^@\s]+"  required>
+                </div>
+
+
+                <div>
+                    <label for="firstname">First Name</label>
+                    <input type="text" pattern="\S+" id="firstname" name="firstname"  minlength="3" maxlength="30" required  onkeyup="this.value = this.value.toUpperCase();"
+                           onkeypress="return (event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) || (event.charCode >= 48 && event.charCode <= 57)"> 
+                </div>
+
+                <div>
+                    <label for="lastname">Last Name</label>
+                    <input type="text" pattern="\S+." id="lastname" name="lastname"  minlength="3" maxlength="30" required  onkeyup="this.value = this.value.toUpperCase();"
+                           onkeypress="return (event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) || (event.charCode >= 48 && event.charCode <= 57)">
+                </div>
+
+                <div>
+                    <label for="birthdate">Birthday</label>
+                    <input type="date" id="birthdate" name="birthdate" value="1990-01-01" min="1940-01-01" max="2005-12-31">
+                </div>
+
+                <div style="border: 10px solid transparent;">
+                    <label style="margin-right: 50px;" for="Gender">Gender</label>
+                    <select style="display: inline-block;" name="gender" id="gender">
+                        <option value="Male">Male</option>
+                        <option value="Female">Female</option>
+                        <option value="Other">Other</option>
+                    </select>
+                </div>
+
+                <div>
+                    <label for="city" id="label_city">City</label>
+                    <input type="text" id="city" name="city"  minlength="3" maxlength="10"
+                           onkeypress="return (event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) || (event.charCode >= 48 && event.charCode <= 57) || (event.charCode === 32)">
+                </div>
+
+
+                <div>
+                    <label for="address" id="label_address">Address</label>
+                    <input type="text" id="address" name="address"  minlength="5" maxlength="15"
+                           onkeypress="return (event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) || (event.charCode >= 48 && event.charCode <= 57) || (event.charCode === 32)">
+                </div>
+
+                <div>
+                    <label for="addr_no" id="label_addr_no">Address Number</label>
+                    <input type="number" id="addr_no" name="addr_no" step="any" min ="0" max="1000">
+                </div>
+
+                <div>
+                    <label for="telephone">Telephone Number</label>
+                    <input type="number" id="telephone" name="telephone"  min="1" max="99999999999999" step="1" required>
+                </div>
+
+                <div>
+                    <label for="amka">AMKA</label>
+                    <input id="new-amka" type="text" name="amka" pattern="[0-9]{11}" title="11 numbers" >
+                </div>
+
+                <input type="submit" value="Submit" style="margin-right: 50%; margin-top: 50px;">
+
+            </form>
+        </div>
+
+
+        <div id="new-user">
+
+            <form id="new-user-form" onsubmit="AddNewUser($('#firstname2').val(), $('#lastname2').val()); $('#new-user-form').trigger('reset'); return false;">
+                <div>
+                    <label for="firstname">First Name</label>
+                    <input type="text" pattern="\S+" id="firstname2" name="firstname"  minlength="3" maxlength="30" required  onkeyup="this.value = this.value.toUpperCase();"
+                           onkeypress="return (event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) || (event.charCode >= 48 && event.charCode <= 57)">
+                </div>
+
+                <div>
+                    <label for="lastname">Last Name</label>
+                    <input type="text" pattern="\S+." id="lastname2" name="lastname"  minlength="3" maxlength="30" required  onkeyup="this.value = this.value.toUpperCase();"
+                           onkeypress="return (event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) || (event.charCode >= 48 && event.charCode <= 57)">
+                </div>
+
+                <input type="submit" value="Submit" style="margin-left: 50%; margin-top:20px; margin-bottom: 100px;">
+            </form>
+
+        </div>
+
+
+
+        <div id="new-hospital">
+
+            <form id="new-hospital-form" onsubmit="AddNewHospital($('#hospital_name').val(), $('#hospital_address').val() , $('#hospital_addr_no').val() , $('#hospital_city').val());$('#new-hospital-form').trigger('reset'); return false;">
+                <div>
+                    <label for="hospital_name">Name</label>
+                    <input type="text" pattern="\S+" id="hospital_name"  minlength="3" maxlength="30" required  onkeyup="this.value = this.value.toUpperCase();"
+                           onkeypress="return (event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) || (event.charCode >= 48 && event.charCode <= 57)">
+                </div>
+
+                <div>
+                    <label for="hospital_address">Address</label>
+                    <input type="text" id="hospital_address" minlength="5" maxlength="15"
+                           onkeypress="return (event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) || (event.charCode >= 48 && event.charCode <= 57) || (event.charCode === 32)">
+                </div>
+
+                <div>
+                    <label for="hospital_addr_no" >Address Number</label>
+                    <input type="number" id="hospital_addr_no" step="any" min ="0" max="1000">
+                </div>
+                <br>
+                <br>
+                <div>
+                    <label for="city">City</label>
+                    <input type="text" id="hospital_city" name="city"  minlength="3" maxlength="10"
+                           onkeypress="return (event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) || (event.charCode >= 48 && event.charCode <= 57) || (event.charCode === 32)">
+                </div>
+
+                <input type="submit" value="Submit" style="margin-left: 50%; margin-top:20px; margin-bottom: 100px;">
+            </form>
+        </div>
+
+        <div id="messages-div">
+        </div>
+        
+        <br>
+
+
+    </body>
+
+
+</html>
